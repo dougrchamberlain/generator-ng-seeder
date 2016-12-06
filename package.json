@@ -2,19 +2,16 @@
   "name": "generator-ng-seeder",
   "version": "0.0.0",
   "description": "Angular 1.5 seed project",
-  "homepage": "http://www.github.com/dougrchamberlain/ng-seeder",
+  "homepage": "https://github.com/dougrchamberlain/generator-ng-seeder.git",
   "author": {
     "name": "Doug Chamberlain",
     "email": "dougrchamberlain@gmail.com",
     "url": ""
   },
   "files": [
-    "generators"
+    "generators/app"
   ],
-  "main": "generators/index.js",
   "keywords": [
-    "",
-    "yeoman-generator",
     "yeoman-generator"
   ],
   "dependencies": {

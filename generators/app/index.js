@@ -1,36 +1,45 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+//Require dependencies
+var generators = require('yeoman-generator');
 
-module.exports = yeoman.Base.extend({
+
+module.exports = generators.Base.extend({
+  method1: function () {
+    console.log('method 1 just ran');
+  },
+  method2: function () {
+    console.log('method 2 just ran');
+  },
   prompting: function () {
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the bedazzling ' + chalk.red('generator-ng-seeder') + ' generator!'
-    ));
-
-    var prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
-
-    return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
-      this.props = props;
+    return this.prompt([{
+      type    : 'input',
+      name    : 'name',
+      message : 'Your project name',
+      default : this.appname // Default to current folder name
+    }, {
+      type    : 'confirm',
+      name    : 'cool',
+      message : 'Would you like to enable the Cool feature?'
+    }]).then(function (answers) {
+      this.log('app name', answers.name);
+      this.log('cool feature', answers.cool);
     }.bind(this));
   },
+//Writing Logic here
+  writing: {
+    //Copy the configuration files
+    config: function () {
+      this.fs.copyTpl(
+        this.templatePath('_package.json'),
+        this.destinationPath('package.json'), {
+          name: this.name
+        }
+      );
+    }
 
-  writing: function () {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
-  },
+    //Copy application files
 
-  install: function () {
-    this.installDependencies();
+    //Install Dependencies
+
   }
 });

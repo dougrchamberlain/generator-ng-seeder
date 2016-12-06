@@ -1,0 +1,8 @@
+node_modules
+bower_components
+dist
+.idea/*
+!.idea/runConfigurations
+!.idea/runConfigurations/*
+npm-debug.log
+/node_modules/
