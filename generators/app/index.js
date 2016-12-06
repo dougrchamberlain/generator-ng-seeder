@@ -21,8 +21,11 @@ module.exports = generators.Base.extend({
       name    : 'cool',
       message : 'Would you like to enable the Cool feature?'
     }]).then(function (answers) {
+      this.props = answers;
       this.log('app name', answers.name);
       this.log('cool feature', answers.cool);
+      console.log(this.props);
+      this.props.name = answers.name;
     }.bind(this));
   },
 //Writing Logic here
@@ -32,7 +35,7 @@ module.exports = generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'), {
-          name: this.name
+          name: this.props.name
         }
       );
     }
