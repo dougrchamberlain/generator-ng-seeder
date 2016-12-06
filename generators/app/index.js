@@ -2,30 +2,30 @@
 //Require dependencies
 var generators = require('yeoman-generator');
 
+//todo: I'm lazy so here is a function  to quickly create the prompts.
+
+function ask(n){
+  return {
+    name: n,
+    message: 'What is the ' + n
+  }
+}
+
+
 
 module.exports = generators.Base.extend({
-  method1: function () {
-    console.log('method 1 just ran');
-  },
-  method2: function () {
-    console.log('method 2 just ran');
-  },
   prompting: function () {
-    return this.prompt([{
-      type    : 'input',
-      name    : 'name',
-      message : 'Your project name',
-      default : this.appname // Default to current folder name
-    }, {
-      type    : 'confirm',
-      name    : 'cool',
-      message : 'Would you like to enable the Cool feature?'
-    }]).then(function (answers) {
+    return this.prompt([
+      ask('name'),
+      ask('description'),
+      ask('gitUrl'),
+      ask('issuesUrl'),
+      ask('homeUrl'),
+      ask('entry'),
+      ask('author'),
+      ask('license')
+    ]).then(function (answers) {
       this.props = answers;
-      this.log('app name', answers.name);
-      this.log('cool feature', answers.cool);
-      console.log(this.props);
-      this.props.name = answers.name;
     }.bind(this));
   },
 //Writing Logic here
@@ -34,15 +34,17 @@ module.exports = generators.Base.extend({
     config: function () {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
-        this.destinationPath('package.json'), {
-          name: this.props.name
-        }
+        this.destinationPath('package.json'), this.props
       );
-    }
+    },
 
     //Copy application files
 
     //Install Dependencies
+    install: function () {
+      this.installDependencies('npm');
+    }
+
 
   }
 });

@@ -1,9 +1,9 @@
 {
   "name": "<%= name %>",
   "version": "0.0.0",
-  "description": "<%= name %>",
-  "homepage": "<%= name %>",
-  "main": "index.js",
+  "description": "<%= description %>",
+  "homepage": "<%= homeUrl %>",
+  "main": "<%= entry %>",
   "dependencies": {
     "angular": "^1.5.9",
     "angular-resource": "^1.5.9",
@@ -11,15 +11,15 @@
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.7.0"
   },
-  "author": "iDentifi",
-  "license": "UNLICENSED",
+  "author": "<%= author %>",
+  "license": "<%= license %>",
   "private": true,
   "bugs": {
-    "url": "http://ontime/ontime"
+    "url": "<%= issuesUrl %>"
   },
   "repository": {
     "type": "git",
-    "url": "http://devbuild5:8080/tfs/ProductCollection/_git/Hawaii_FrontEnd"
+    "url": "<%= gitUrl %>"
   },
   "devDependencies": {
     "angular-mocks": "1.5.9",
